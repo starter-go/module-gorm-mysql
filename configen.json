@@ -1,0 +1,33 @@
+{
+    "configen": {
+        "version": "4",
+        "sources": [
+            {
+                "id": "driver",
+                "path": "driver",
+                "r": true
+            },
+            {
+                "id": "test",
+                "path": "src/test/test1",
+                "r": true
+            }
+        ],
+        "destinations": [
+            {
+                "id": "driver",
+                "path": "gen/gen4driver",
+                "sources": [
+                    "driver"
+                ]
+            },
+            {
+                "id": "test",
+                "path": "gen/gen4test",
+                "sources": [
+                    "test"
+                ]
+            }
+        ]
+    }
+}
