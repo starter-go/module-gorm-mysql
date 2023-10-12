@@ -11,30 +11,36 @@ const (
 
 // TableReg ...
 type TableReg struct {
+
 	//starter:component
-	_as func(libgorm.TableRegistry) //starter:as(".")
+	_as func(libgorm.GroupRegistry) //starter:as(".")
 
 	Context application.Context //starter:inject("context")
 
+	agent libgorm.DatabaseAgent
 }
 
-func (inst *TableReg) _impl() {
-	inst._as(inst)
+func (inst *TableReg) _impl(a libgorm.GroupRegistry) {
+	a = inst
 }
 
-// ListTableRegistrations ...
-func (inst *TableReg) ListTableRegistrations() []*libgorm.TableRegistration {
+// Group ...
+func (inst *TableReg) Group() *libgorm.Group {
 
-	builder := &libgorm.TableGroupBuilder{}
-	builder.Group(&libgorm.TableGroup{
-		Name:        "test1",
-		Namespace:   theNamespace,
-		NamerSetter: theNamers.initAll,
-	})
+	list := make([]any, 0)
+	list = append(list, &Table1{})
+	list = append(list, &Table2{})
+	list = append(list, &Table3{})
 
-	builder.Entity(&Table1{})
-	builder.Entity(&Table2{})
-	builder.Entity(&Table3{})
+	return &libgorm.Group{
+		Enabled:    true,
+		Name:       theNamespace,
+		Prototypes: list,
+		OnInit:     inst.onInit,
+		Prefix:     "",
+	}
+}
 
-	return builder.Create()
+func (inst *TableReg) onInit(ctx *libgorm.TableContext) {
+	inst.agent.Init(ctx.Database)
 }

@@ -8,7 +8,7 @@ import (
 // type p0c3ec0b12.TableReg in package:github.com/starter-go/module-gorm-mysql/src/test/test1
 //
 // id:com-0c3ec0b1282d50c6-test1-TableReg
-// class:class-512a309140d0ad99eb1c95c8dc0d02f9-TableRegistry
+// class:class-512a309140d0ad99eb1c95c8dc0d02f9-GroupRegistry
 // alias:
 // scope:singleton
 //
@@ -18,7 +18,7 @@ type p0c3ec0b128_test1_TableReg struct {
 func (inst* p0c3ec0b128_test1_TableReg) register(cr application.ComponentRegistry) error {
 	r := cr.NewRegistration()
 	r.ID = "com-0c3ec0b1282d50c6-test1-TableReg"
-	r.Classes = "class-512a309140d0ad99eb1c95c8dc0d02f9-TableRegistry"
+	r.Classes = "class-512a309140d0ad99eb1c95c8dc0d02f9-GroupRegistry"
 	r.Aliases = ""
 	r.Scope = "singleton"
 	r.NewFunc = inst.new
