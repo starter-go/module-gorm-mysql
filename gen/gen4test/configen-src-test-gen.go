@@ -1,6 +1,7 @@
 package gen4test
 import (
     p0ef6f2938 "github.com/starter-go/application"
+    p512a30914 "github.com/starter-go/libgorm"
     p0c3ec0b12 "github.com/starter-go/module-gorm-mysql/src/test/test1"
      "github.com/starter-go/application"
 )
@@ -37,6 +38,7 @@ func (inst* p0c3ec0b128_test1_TableReg) inject(injext application.InjectionExt, 
 
 	
     com.Context = inst.getContext(ie)
+    com.DSMan = inst.getDSMan(ie)
 
 
     return nil
@@ -45,6 +47,11 @@ func (inst* p0c3ec0b128_test1_TableReg) inject(injext application.InjectionExt, 
 
 func (inst*p0c3ec0b128_test1_TableReg) getContext(ie application.InjectionExt)p0ef6f2938.Context{
     return ie.GetContext()
+}
+
+
+func (inst*p0c3ec0b128_test1_TableReg) getDSMan(ie application.InjectionExt)p512a30914.DataSourceManager{
+    return ie.GetComponent("#alias-512a309140d0ad99eb1c95c8dc0d02f9-DataSourceManager").(p512a30914.DataSourceManager)
 }
 
 
